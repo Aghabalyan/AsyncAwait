@@ -7,6 +7,10 @@
 
 import UIKit
 
+enum MyError: Error {
+    case failure
+}
+
 class ViewController: UIViewController {
     
     // MARK: - IBOutlets
@@ -34,18 +38,22 @@ class ViewController: UIViewController {
         
         Task {
             // get posts
-            var posts = await fetchPosts()
-        
-            if let id = posts.first?.id {
-                
-                // get comments
-                let comments = await fetchComments(postId: id)
-                
-                posts[0].addComments(comments: comments)
-            }
-
-            self.posts = posts
+            let result = await fetchPosts()
             
+            switch result {
+            case .success(var posts):
+                if let id = posts.first?.id {
+                    // get comments
+                    let comments = await fetchComments(postId: id)
+                    posts[0].addComments(comments: comments)
+                }
+
+                self.posts = posts
+                
+            case .failure(let error):
+                print(error)
+            }
+        
             DispatchQueue.main.async {
                 self.tableView.reloadData()
             }
@@ -61,21 +69,21 @@ class ViewController: UIViewController {
     
     // MARK: - Requests
     
-    private func fetchPosts() async -> [Post] {
+    private func fetchPosts() async -> Result<[Post], Error> {
         activityIndicator.startAnimating()
         activityIndicator.isHidden = false
         guard let urlPosts else {
-            return []
+            return .failure(MyError.failure)
         }
         
         do {
             let (data, _) = try await URLSession.shared.data(from: urlPosts)
             let posts = try JSONDecoder().decode([Post].self, from: data)
             activityIndicator.stopAnimating()
-            return posts
+            return .success(posts)
         } catch let error {
             print(error)
-            return []
+            return .failure(error)
         }
     }
     
