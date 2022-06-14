@@ -67,16 +67,32 @@
 				1EE0FAD42858A9EA00A3AB5A /* AppDelegate.swift */,
 				1EE0FAD62858A9EA00A3AB5A /* SceneDelegate.swift */,
 				1EE0FAD82858A9EA00A3AB5A /* ViewController.swift */,
-				1EE0FAE82858AB2400A3AB5A /* Post.swift */,
-				1EE0FAEE2858B9B900A3AB5A /* Comment.swift */,
+				1EE0FAF02858CA9300A3AB5A /* Models */,
+				1EE0FAF12858CAA300A3AB5A /* Cells */,
 				1EE0FADA2858A9EA00A3AB5A /* Main.storyboard */,
-				1EE0FAEA2858B60500A3AB5A /* PostCell.swift */,
-				1EE0FAEB2858B60500A3AB5A /* PostCell.xib */,
 				1EE0FADD2858A9EC00A3AB5A /* Assets.xcassets */,
 				1EE0FADF2858A9EC00A3AB5A /* LaunchScreen.storyboard */,
 				1EE0FAE22858A9EC00A3AB5A /* Info.plist */,
 			);
 			path = AsyncAwait;
+			sourceTree = "<group>";
+		};
+		1EE0FAF02858CA9300A3AB5A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1EE0FAE82858AB2400A3AB5A /* Post.swift */,
+				1EE0FAEE2858B9B900A3AB5A /* Comment.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1EE0FAF12858CAA300A3AB5A /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				1EE0FAEA2858B60500A3AB5A /* PostCell.swift */,
+				1EE0FAEB2858B60500A3AB5A /* PostCell.xib */,
+			);
+			path = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
